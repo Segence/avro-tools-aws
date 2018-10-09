@@ -20,13 +20,13 @@ repositories {
 bintray {
   user = project.hasProperty('bintrayUser') ? project.property('bintrayUser') : System.getenv('BINTRAY_USER')
   key = project.hasProperty('bintrayApiKey') ? project.property('bintrayApiKey') : System.getenv('BINTRAY_API_KEY')
-  publications = ['ProjectPublication']
+  publications = ['application']
   pkg {
     repo = 'maven-oss-releases'
-    name = 'jmx-collector'
+    name = 'avro-tools-aws'
     userOrg = 'segence'
     licenses = ['Apache-2.0']
-    vcsUrl = 'https://github.com/segence/jmx-collector.git'
+    vcsUrl = 'https://github.com/segence/avro-tools-aws.git'
   }
 }
 
@@ -63,7 +63,7 @@ shadowJar {
 
 publishing {
   publications {
-    shadow(MavenPublication) { publication ->
+    application(MavenPublication) { publication ->
       project.shadow.component(publication)
     }
   }
