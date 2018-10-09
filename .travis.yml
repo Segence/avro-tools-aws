@@ -5,20 +5,21 @@ jobs:
     script: "./scripts/stage.sh unit-test"
 env:
   global:
-  - BINTRAY_USER=robvadai
-  - secure: LfqIfSARp6h2bJpr9E0hc835+qQDi5NEC98jfCHgcJOIFcM7eDBYwKRwcVJhYo4cKzIJ76eNw7IcHLksx+B2BYSqVHOLZflsvH52TlrUsOH3uM+b4eVSI0L1QdC0Up+/tHIM2c94zHsBaazD0RYYQVwV7rQZH124r5GTofKk5X1Wfww82ViDL9K0jAYdctYcX57XyKiNwGpQcS23aVw8R+NEGPVk1K500XYvjQIoD5mHIuuIQLQq1aXPBRbaAoSROUDsFJ2UHZOdkDlTpPIEesg2p2zEDvteeuiwOdWmlEightpih7YWvFAYsLPBx1MXBf1D61nmDOjzYYfbTjdrY5MPwKt9BDvDP40n5czdK3RoNp+BC3W1q96S0mev1WW3C8ulZ76B7lb6hqDPPiUGZ9FYMJ3zNzTcSqyTx9HIb42Aclqja+UQ28QSFbpYarV3sacZiMmyk+lkPC8ilbbECevsZ1Pvwo+ImfOse8nfwm6/Rko4odO80mU1kRbeBMBG0xYPy3Hzfk/xxJQltKQ1bymPbkTDXn4947gby16ffNMO1lUJaskaUxEYMgkWttEXtS1vZX09dzKeVrraMVrRJefuOhi/yUCTBY/ouqNIYTHdVj/S5ud5M+izgIK2d+CI2fb11WsRpbZMLNCwcoNEv0810Y81i2Wg9fM5ydQmfSA=
+    matrix:
+    - BINTRAY_USER=robvadai
+    - secure: gDWonO19dvAuDJeqxHJ+IjM9MPIQ9neE29yvf+2fiCNKX52z4gjJucpF/0F1BFK1WqSO8Q0PJSx3+zrsC+FqQSPnQLNYiIRKOZvn4Mvfo38CI9RpN29L1wjQrw3cEV/IBV6VO645fp5zVCmZRc/0KNtfWl7v4ebFDgwUMg276xmRBR60a5bitRAgZ1CG+7lqytgNADe0yVtUXjBhzlpgzIeosE7G2C5/6rBm8T3FE0mTdNhPsXSUneqHrKpYSz7A9tmg0/VG0L6PF5nbfUkCv4m7tq8colk/VyNeQIgLN+vptoHmrHSHVCXl8awg4qn3FCit3vCqrSTkKVXrEenqG7U7HJ8z+Qzcs8+W62HgwKCtXjmHF4r3nAwzDDn3HvMTbfRJBxjLwmYSutBVfmJPSnLnT8LVmIu47CRf6q8Fk7ZIKK4cIJO5GZvTHcOTk1DkJa6a2YNi6ndz3kK7FSat/QQ8re/1pOnD3+nFGPdeHDV2C3wP8eEtF5X8wqS5dPERDc8sE50SBguCkevshLc0/lsIgaxCwupWukWU8HALrDw61/goo65sd4i3lNs8NP0p8wSUd8JaERVrQoq6IoPWfEFliR2wk07lvOi0UujiUj/GCFMhv56GMNHHXsJeTIfQ4K4H6qaDDxA3GlgbN5r02XJxCNppXXnUlaAwveCEhss=
 before_deploy:
 - git config --local user.name "Continuous Integration Automation"
 - git config --local user.email "ci@segence.com"
 - "./scripts/stage.sh generate-tag"
 deploy:
-  - provider: script
-    script: "./scripts/stage.sh publish-to-bintray"
-    on:
-      branch: master
-  - provider: releases
-    api_key:
-      secure: uujkJoxa/wBUBg/qVPG96mfCUH4zA6ReUTFJTtX6BdUTjbPr+YZNgsGB1XMF2rGZhdJxG6ND82zLERbxdXyGAxb4S2V2DMNuAuLWhwVZYzIEfuH0swrLH82DD0In/kqNGM9Clq+VeafbIEKOmBpBZiK8gPGxpsyqw9WgEuabhrzdLLtWxAQGcgcA3AAgGvc4GD36epK3MZ91kxZbkA+Gtss6GSV6YeSLm/5CNwgHUcVsRxmsO48WdTOyVtfDxV5yhCLGjsATgr5gpLmpflvtiA6zCDHnfJfcBnQ6+tOHjVrpO9OVW4Hl87GX5gYY18Sz7/tRaZO19QRIsoghx7sGiwiOV95bZbCXooQFGofz0dqBUvSlfZhj0q2fyaEApW3pqFE/MIS/Pw/h5EcFzqJaFcpqAQ7l66FNiJElyisDzyQz5SG2GhR/QtnzJ7Ie/fwiXuVHW4+SO+MyWO206/4U8ayWcdRWfgpEsq6MqwqjodlRSMhRJvoajh29XanTZVn/6itdChupl69tlTIako1qbTJLlsLl1S57buFLGzuOg9z0wRU0zdY/Oy5ju71F9hdmR71/AG/mJm9HTM8d10mHvH0TeMkDCLfkjJHadGKwMKjdQR1tVZyEz4WdgxkqWLVLHslBdofjEubCaHm0XEKmKJA/A5ZO8KNR5yZBs/nZ6EY=
-    on:
-      repo: Segence/avro-tools-aws
-      branch: master
+- provider: script
+  script: "./scripts/stage.sh publish-to-bintray"
+  on:
+    branch: master
+- provider: releases
+  api_key:
+    secure: uujkJoxa/wBUBg/qVPG96mfCUH4zA6ReUTFJTtX6BdUTjbPr+YZNgsGB1XMF2rGZhdJxG6ND82zLERbxdXyGAxb4S2V2DMNuAuLWhwVZYzIEfuH0swrLH82DD0In/kqNGM9Clq+VeafbIEKOmBpBZiK8gPGxpsyqw9WgEuabhrzdLLtWxAQGcgcA3AAgGvc4GD36epK3MZ91kxZbkA+Gtss6GSV6YeSLm/5CNwgHUcVsRxmsO48WdTOyVtfDxV5yhCLGjsATgr5gpLmpflvtiA6zCDHnfJfcBnQ6+tOHjVrpO9OVW4Hl87GX5gYY18Sz7/tRaZO19QRIsoghx7sGiwiOV95bZbCXooQFGofz0dqBUvSlfZhj0q2fyaEApW3pqFE/MIS/Pw/h5EcFzqJaFcpqAQ7l66FNiJElyisDzyQz5SG2GhR/QtnzJ7Ie/fwiXuVHW4+SO+MyWO206/4U8ayWcdRWfgpEsq6MqwqjodlRSMhRJvoajh29XanTZVn/6itdChupl69tlTIako1qbTJLlsLl1S57buFLGzuOg9z0wRU0zdY/Oy5ju71F9hdmR71/AG/mJm9HTM8d10mHvH0TeMkDCLfkjJHadGKwMKjdQR1tVZyEz4WdgxkqWLVLHslBdofjEubCaHm0XEKmKJA/A5ZO8KNR5yZBs/nZ6EY=
+  on:
+    repo: Segence/avro-tools-aws
+    branch: master
