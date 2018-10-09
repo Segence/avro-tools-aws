@@ -34,6 +34,12 @@ task wrapper(type: Wrapper) {
   gradleVersion = gradleWrapperVersion
 }
 
+task printVersion {
+  doLast {
+    println project.version
+  }
+}
+
 dependencies {
   compile (
     "org.apache.hadoop:hadoop-aws:2.8.0",
